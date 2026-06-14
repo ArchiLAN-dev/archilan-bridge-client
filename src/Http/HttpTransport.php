@@ -13,7 +13,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
  * @internal
  *
  * Single HTTP plumbing layer: injects auth, maps errors to exceptions, decodes responses.
- * Sub-clients call this class exclusively — they contain zero raw HTTP logic.
+ * Sub-clients call this class exclusively - they contain zero raw HTTP logic.
  */
 final class HttpTransport
 {

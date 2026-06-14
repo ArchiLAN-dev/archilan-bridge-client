@@ -19,12 +19,12 @@ use WebSocket\TimeoutException;
  * Obtained via WsClient::connect(). The initial snapshot is always available via snapshot().
  *
  * Inbound message types:
- *   - BridgeEvent           — real-time events (join, chat, item_send, hint, goal, …)
- *   - ApproveRestartRequest — server asks whether the client approves an AP restart
+ *   - BridgeEvent           - real-time events (join, chat, item_send, hint, goal, …)
+ *   - ApproveRestartRequest - server asks whether the client approves an AP restart
  *
  * Outbound:
- *   - sendCommand()  — send an AP server command (e.g. !hint, !release)
- *   - respond()      — reply to an ApproveRestartRequest
+ *   - sendCommand()  - send an AP server command (e.g. !hint, !release)
+ *   - respond()      - reply to an ApproveRestartRequest
  */
 final class WsConnection
 {
@@ -86,7 +86,7 @@ final class WsConnection
      * Prefer this over listen() when you need composable iteration, early break, or
      * interleaved sends between messages.
      *
-     * ApproveRestartRequest messages are yielded like any other — the caller is responsible
+     * ApproveRestartRequest messages are yielded like any other - the caller is responsible
      * for calling respond() on them, or use listen() to have that handled automatically.
      *
      * Usage:
@@ -135,7 +135,7 @@ final class WsConnection
      * Sends an AP server command (e.g. "!help", "!hint Slot ItemName").
      *
      * @param string      $text  The command text.
-     * @param string|null $id    Optional correlation ID — the bridge echoes it in the ack frame.
+     * @param string|null $id    Optional correlation ID - the bridge echoes it in the ack frame.
      *
      * @throws WsConnectionException on send failure
      */
@@ -193,7 +193,7 @@ final class WsConnection
         try {
             $raw = $this->socket->receive();
         } catch (TimeoutException) {
-            return null; // read timeout — no data yet, keep looping
+            return null; // read timeout - no data yet, keep looping
         } catch (ConnectionException $e) {
             $this->open = false;
             throw new WsConnectionException('Connection lost: '.$e->getMessage(), previous: $e);

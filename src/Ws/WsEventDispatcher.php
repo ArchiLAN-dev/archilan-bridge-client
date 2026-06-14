@@ -24,7 +24,7 @@ use Archilan\BridgeClient\Ws\Message\SnapshotMessage;
  * Subscriber-based event dispatcher for the bridge WebSocket.
  *
  * Register subscribers via subscribe(), then call listen() to start the blocking event loop.
- * Routing to typed handler methods is automatic — the dispatcher inspects which interfaces
+ * Routing to typed handler methods is automatic - the dispatcher inspects which interfaces
  * each subscriber implements and calls only the relevant methods.
  *
  * Example:
@@ -51,7 +51,7 @@ final class WsEventDispatcher
     /**
      * Registers a subscriber. Safe to call before or during listen().
      *
-     * @return static Fluent — allows chaining multiple subscribe() calls.
+     * @return static Fluent - allows chaining multiple subscribe() calls.
      */
     public function subscribe(WsSubscriber $subscriber): static
     {
@@ -137,12 +137,12 @@ final class WsEventDispatcher
         $type = $event->eventType();
 
         foreach ($this->subscribers as $sub) {
-            // Wildcard — always called regardless of event type
+            // Wildcard - always called regardless of event type
             if ($sub instanceof BridgeEventListener) {
                 $sub->onBridgeEvent($event);
             }
 
-            // Typed handlers — called only for the matching event type
+            // Typed handlers - called only for the matching event type
             if (BridgeEventType::Feed === $type && $sub instanceof FeedListener) {
                 $sub->onFeed($event);
             } elseif (BridgeEventType::StateChanged === $type && $sub instanceof StateChangedListener) {

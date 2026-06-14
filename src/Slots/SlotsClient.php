@@ -6,6 +6,7 @@ namespace Archilan\BridgeClient\Slots;
 
 use Archilan\BridgeClient\Enum\HintStatus;
 use Archilan\BridgeClient\Http\HttpTransport;
+use Archilan\BridgeClient\Slots\Response\HintItemOkResponse;
 use Archilan\BridgeClient\Slots\Response\HintOkResponse;
 use Archilan\BridgeClient\Slots\Response\HintsResponse;
 use Archilan\BridgeClient\Slots\Response\ItemLocationsResponse;
@@ -64,6 +65,16 @@ final class SlotsClient
             $this->transport->postJson('/slots/'.$slot.'/hints/request', [
                 'locationId' => $locationId,
                 'free'       => $free,
+            ])
+        );
+    }
+
+    public function requestHintItem(int $slot, string $itemName, bool $free = false): HintItemOkResponse
+    {
+        return HintItemOkResponse::fromArray(
+            $this->transport->postJson('/slots/'.$slot.'/hints/request-item', [
+                'itemName' => $itemName,
+                'free'     => $free,
             ])
         );
     }

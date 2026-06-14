@@ -10,8 +10,8 @@ use Archilan\BridgeClient\Ws\Message\BridgeEvent;
  * Receives AP server lifecycle transitions: pause, resume, or failed restart.
  *
  * Payload keys:
- *   - `event`      (string)  — "paused" | "restarted" | "restart_failed"
- *   - `failedSave` (bool)    — present only on "restart_failed": true if the save was lost
+ *   - `event`      (string)  - "paused" | "restarted" | "restart_failed"
+ *   - `failedSave` (bool)    - present only on "restart_failed": true if the save was lost
  */
 interface LifecycleListener extends WsSubscriber
 {
