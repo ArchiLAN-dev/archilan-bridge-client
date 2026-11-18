@@ -79,12 +79,19 @@ final class SlotsClient
         );
     }
 
-    public function updateHint(int $slot, int $locationId, HintStatus $status): HintOkResponse
+    /**
+     * A location id is unique within one game only: two worlds of the same game share them. $findingPlayer (the
+     * world the location belongs to) picks the right hint; without it the bridge takes the first one at that id.
+     */
+    public function updateHint(int $slot, int $locationId, HintStatus $status, ?int $findingPlayer = null): HintOkResponse
     {
+        $body = ['status' => $status->value];
+        if (null !== $findingPlayer) {
+            $body['findingPlayer'] = $findingPlayer;
+        }
+
         return HintOkResponse::fromArray(
-            $this->transport->patchJson('/slots/'.$slot.'/hints/'.$locationId, [
-                'status' => $status->value,
-            ])
+            $this->transport->patchJson('/slots/'.$slot.'/hints/'.$locationId, $body)
         );
     }
 
