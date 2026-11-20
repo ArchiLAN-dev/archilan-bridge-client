@@ -3,7 +3,7 @@
     "description": "PHP client for the Archilan Bridge REST API.",
     "type": "library",
     "version": "1.3.0",
-    "license": "proprietary",
+    "license": "MIT",
     "require": {
         "php": "^8.2",
         "symfony/http-client-contracts": "^3.0",
